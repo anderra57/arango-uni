@@ -8,6 +8,8 @@ services:
       - 8529:8529
     environment:
       - ARANGO_ROOT_PASSWORD=passwd
+    volumes:
+      - as_arangodb:/var/lib/arangodb3
       
   web:
     container_name: con_web
@@ -24,4 +26,9 @@ services:
       - ARANGO_PASS=passwd
       - WEB_ADMIN=ulopeznovoa
       - WEB_PASS=1234
+    volumes:
+      - as_flask:/app
     command: python /app/app.py
+volumes:
+  as_arangodb:
+  as_flask:
