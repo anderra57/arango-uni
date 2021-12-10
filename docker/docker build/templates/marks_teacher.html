@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}MARKS - TEACHER'S PORTAL{% endblock %}
+
+{% block content %}
+<h1 class="w3-opacity w3-wide">MARKS - TEACHER'S PORTAL</h1>
+<hr>
+<table class="w3-table w3-striped w3-bordered">
+    <thead>
+        <tr>
+            {% for col in colnames_headers %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for elem in data %}
+        <tr>
+            {% for col in colnames %}
+            <td>{{ elem[col] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

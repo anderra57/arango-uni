@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arangodb
+  labels:
+    service: arangodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: arangodb
+  template:
+    metadata:
+      labels:
+        service: arangodb
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: con-db
+          image: arangodb:latest
+          ports:
+            - containerPort: 8529
+          env:
+            - name: ARANGO_ROOT_PASSWORD
+              value: passwd
+          volumeMounts:
+            - name: arangodb
+              mountPath: /var/lib/arangodb3
+      volumes:
+        - name: arangodb
+          persistentVolumeClaim:
+            claimName: arangodb

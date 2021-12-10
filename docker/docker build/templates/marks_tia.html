@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}MARKS TIA{% endblock %}
+
+{% block content %}
+<h1 class="w3-opacity w3-wide">MARKS TIA</h1>
+<hr>
+<table class="w3-table w3-striped w3-bordered">
+    <thead>
+        <tr>
+            {% for col in colnames_headers %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for elem in data %}
+        {% if elem['mark_tia'] != 'NA' %}
+        <tr>
+            {% for col in colnames %}
+            <td>{{ elem[col] }}</td>
+            {% endfor %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

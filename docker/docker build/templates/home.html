@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}HOME{% endblock %}
+{% block content %}
+<h1 class="w3-opacity w3-wide">ARANGO UNIVERSITY</h1>
+<img src="/static/arango.png">
+<hr>
+
+<p class="w3-justify">
+  Esta aplicación web ha sido creada para el proyecto individual de Administración de Sistemas. 
+  Simula un hipotético tablón en el que se colgarán las notas de las tres asignaturas de la rama: 
+  TIA, Minería y esta misma, Sistemas.
+</p>
+<p class="w3-justify">
+  Al abrir la aplicación, se encontrarán esta pantalla principal. Para escoger las diferentes
+   asignaturas, el alumnado podrá acceder desde la barra de navegación superior, 
+  ya sea clicando en Marks y al acceder a ello pulsar el botón correspondiente o directamente
+   desde el menú desplegable de la propia barra de navegación. Por supuesto, 
+  al ser un tablón público solo aparece el documento de identidad y la nota, para mantener la confidencialidad.
+</p>
+<p class="w3-justify">
+  Por otra parte, el profesor podrá acceder al listado completo de los alumnos y saber 
+  toda su información: Nombre, apellido, sexo, email, número de teléfono... 
+  además de las notas de las tres asignaturas. 
+</p>
+<p class="w3-justify">
+  Por supuesto, también habrá otro apartado para introducir un nuevo registo a la base de datos. 
+  Todo esto se podrá hacer pulsando en el botón Teacher de la barra de navegación. 
+  Esta sección está protegida por una contraseña que se define
+  previamente en el docker-compose, para que no todo el mundo pueda acceder a ella.
+</p>
+<p class="w3-justify">
+  Además, desde el <a href="/admin">directorio oculto /admin</a> se podrá rellenar la base de datos con información de 50 alumnos ficticios, para poder hacer las pruebas de visualización. 
+</p>
+<p class="w3-justify">  
+  Esta aplicación web está corriendo en Python Flask y está sincronizada con ArangoDB, una base de datos multimodelo y de código abierto.
+</p>
+
+{% endblock %}

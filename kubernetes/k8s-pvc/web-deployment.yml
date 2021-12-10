@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask
+  labels:
+    service: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: flask
+  template:
+    metadata:
+      labels:
+        service: flask
+    spec:
+      restartPolicy: Always
+      initContainers:
+      - name: init-flask
+        image: anderra57/arango-uni:latest
+        command: ["/bin/sh", "-c", "cp -R /app/* /tmp/"]
+        volumeMounts:
+        - name: flask
+          mountPath: /tmp
+      containers:
+        - name: con-flask
+          image: anderra57/arango-uni:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ARANGO_NAME
+              value: arangodb
+            - name: ARANGO_PASS
+              value: passwd
+            - name: FLASK_HOST
+              value: 0.0.0.0
+            - name: FLASK_PORT
+              value: "5000"
+            - name: WEB_ADMIN
+              value: ulopeznovoa
+            - name: WEB_PASS
+              value: "1234"
+          args:
+            - python
+            - /app/app.py
+          volumeMounts:
+            - name: flask
+              mountPath: /app
+      volumes:
+        - name: flask
+          persistentVolumeClaim:
+            claimName: flask
